@@ -1,0 +1,11 @@
+Bit, Attr, Reset Value, Description
+31:25,RW,0x00,  Reserved
+                Reserved
+24,RW,0x0,      sw_fading_en
+                Fading enable
+23:16,RW,0x00,  sw_fading_offset_b
+                Fading offset B value
+15:8,RW,0x00,   sw_fading_offset_g
+                Fading offset G value (Pattern total number when pattern loading)
+7:0,RW,0x00,    sw_fading_offset_r
+                Fading offset R value (Start point of pattern ram in pattern mode)

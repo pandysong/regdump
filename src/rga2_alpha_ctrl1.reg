@@ -1,0 +1,96 @@
+Bit, Attr, Reset Value, Description
+31:30,RW,0x0,        Reserved
+                     Reserved
+29,RW,0x0,           sw_src_alpha_m1
+                     Src Transparent/opaque of lapha channel (As1')
+                     0b0: As
+                     0b1: 255-As
+28,RW,0x0,           sw_dst_alpha_m1
+                     Dst Transparent/opaque of alpha channel (Ad1’)
+                     0b0: Ad
+                     0b1: 255-Ad
+27:26,RW,0x0,        sw_src_blend_m1
+                     Alpha src blend mode select of alpha channel (As1_’’)
+                     0b00: Ags
+                     0b01: As1'
+                     0b10: (As1'*Ags) >>8
+                     0b11: reserved
+25:24,RW,0x0,        sw_dst_blend_m1
+                     Alpha dst blend mode select of alpha channel(Ad1_’’)
+                    0b00: Agd
+                    0b01: Ad1’
+                    0b10: (Ad1’*Agd)>>8
+                    0b11: reserved
+23,RW,0x0,          sw_src_alpha_cal_m1
+                    Alpha src calculate mode of alpha channel(As1’’)
+                    0b0: As1’’= As1_’’+ (As1_’’>>7)
+                    0b1: As1’’= As1 _’’
+22,RW,0x0,          sw_dst_alpha_cal_m1
+                    Alpha dst calculate mode of alpha channel(Ad1’’)
+                    0b0: Ad1’’= Ad1_’’ + (Ad1_’’>>7)
+                    0b1: Ad1’’= Ad1_’’
+21:19,RW,0x0,       w_src_factor_m1
+                    Src factore mode of alpha channel(Fs1)
+                    0b000: 0
+                    0b001: 256
+                    0b010: Ad1’’
+                    0b011: 256-Ad1’’
+                    0b100: As1’’
+18:16,RW,0x0,       sw_dst_factor_m1
+                    Dst factore mode of alpha channel(Fd1)
+                    0b000: 0
+                    0b001: 256
+                    0b010: As1’’
+                    0b011: 256-As1’’
+                    0b100: Ad1’’
+15,RW,0x0,          sw_src_alpha_m0
+                    Src Transparent/opaque of color channel (As0’)
+                    0b0: As
+                    0b1: 255-As
+14,RW,0x0,          sw_dst_alpha_m0
+                    Dst Transparent/opaque of color channel (Ad0’)
+                    0b0: Ad
+                    0b1: 255-Ad
+13:12,RW,0x0,       sw_src_blend_m0
+                    Alpha src blend mode select of color channel (As0_’’)
+                    0b00: Ags
+                    0b01: As0’
+                    0b10: (As0’*Ags)>>8
+                    0b11: Reserved
+11:10,RW,0x0,       sw_dst_blend_m0
+                    Alpha dst blend mode select of color channel(Ad0_’’)
+                    0b00: Agd
+                    0b01: Ad0’
+                    0b10: (Ad0’*Agd)>>8
+                    0b11: Reserved
+9,RW,0x0,           sw_src_alpha_cal_m0
+                    Alpha src calculate mode of color channel(As0’’)
+                    0b0: As0’’= As0_’’+ (As0_’’>>7)
+                    0b1: As0’’= As0 _’’
+8,RW,0x0,           sw_dst_alpha_cal_m0
+                    Alpha dst calculate mode of color channel(Ad0’’)
+                    0b0: Ad0’’= Ad0_’’ + (Ad0_’’>>7)
+                    0b1: Ad0’’= Ad0_’’
+7:5, RW,0x0,        sw_src_factor_m0
+                    Src factore mode of color channel(Fs0)
+                    0b000: 0
+                    0b001: 256
+                    0b010: Ad0’’
+                    0b011: 256-Ad0’’
+                    0b100: As0’’
+
+4:2, RW,0x0,        sw_dst_factor_m0
+                    Dst factore mode of color channel(Fd0)
+                    0b000: 0
+                    0b001: 256
+                    0b010: As0’’
+                    0b011: 256-As0’’
+                    0b100: Ad0’’
+1, RW,0x0,          sw_src_color_m0
+                    SRC color select(Cs’)
+                    0b0: Cs
+                    0b1: Cs * As0’’
+0, RW,0x0,          sw_dst_color_m0
+                    SRC color select(Cd’)
+                    0b0: Cd
+                    0b1: Cd * Ad0’’

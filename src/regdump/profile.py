@@ -36,7 +36,9 @@ def parse_profile_internal(lines, lq, err_io):
         header = next(lines)
         while True:
             l = next(lines)
+            # print(l)
             field = split_field(l)
+            # print(field)
             if is_field_header(field):
                 # it is field header, go ahead to get description
 
@@ -72,7 +74,7 @@ def parse_profile_internal(lines, lq, err_io):
                     m = {}
                     profile = profile + [f]
             else:
-                print("unexpcted line:", field)
+                print("unexpected line:", field)
 
     except StopIteration:
         pass
