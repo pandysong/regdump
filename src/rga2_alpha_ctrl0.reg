@@ -1,0 +1,23 @@
+Bit, Attr, Reset Value, Description
+32:21, RW, 0x000,       Reserved
+20,    RW, 0,           sw_mask_endian
+                        ROP4 mask endian swap
+                        0b0: Big endian
+                        0b1: Little endian
+19:12, RW, 0x00,        sw_dst_global_alpha
+                        Global alpha value of DST(Agd)
+11:4,  RW, 0x00,        sw_src_global_alpha
+                        Global alpha value of SRC(Ags) Fading value in fading mod
+3:2,   RW, 0x0,         sw_rop_mode 
+                        ROP mode select 
+                        0b00: ROP 2
+                        0b01: ROP 3
+                        0b10: ROP 4
+1,     RW, 0x0,         sw_alpha_rop_sel
+                        Alpha or ROP select 
+                        0b0: Alpha
+                        0b1: ROP
+0,     RW, 0x0,         sw_alpha_rop_e
+                        Alpha or ROP enable 
+                        0b0: Disable
+                        0b1: Enable
