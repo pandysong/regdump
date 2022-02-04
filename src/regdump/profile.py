@@ -16,7 +16,7 @@ def get_field(field, description, valuemap):
         bitlen = 1
         start = int(s)
 
-    return Field(start=start, len=bitlen, name=field[2],
+    return Field(start=start, len=bitlen, name=field[3],
                  description=description, valuemap=valuemap)
 
 
@@ -51,13 +51,16 @@ def parse_profile_internal(lines, lq, err_io):
                     m = {}
                     while True:
                         vmap = next(lines)
+                        vmap = vmap.strip()
+                        if not vmap:
+                            # ignore empty line
+                            continue
                         vfield = split_field(vmap)
                         if is_field_header(vfield):
                             lq.put(vmap)
                             break
                         mapvalues = [s.strip() for s in vmap.split(":")]
                         m[mapvalues[0]] = mapvalues[1]
-                    #print("  map", m)
 
                 finally:
                     # create object
@@ -94,5 +97,28 @@ def parse_profile(profile, err_io):
         return parse_profile_internal(lines, lq, err_io)
     except UnicodeDecodeError:
         # if gb18030 fails, we try utf-8
-        lines, lq = readlines(pads_schematic, "utf-8")
+        lines, lq = readlines(profile, "utf-8")
         return parse_profile_internal(lines, lq, err_io)
+
+
+def inteprete_bits(profile, bits):
+    for f in profile:
+        value = bits >> f.start & ((1 << f.len) - 1)
+        valuestr = '0b'+format(value, '0'+str(f.len)+'b')
+        if f.valuemap:
+            if valuestr in f.valuemap:
+                meaning = f.valuemap[valuestr]
+            else:
+                meaning = "Illegal Value"
+        else:
+            meaning = None
+
+        if meaning:
+            print("{} ({})\n\tbit {} len {}\n\t{} ({})".format(
+                f.name, f.description,
+                f.start, f.len,
+                valuestr, meaning))
+        else:
+            print("{} ({})\n\tbit {} len {}\n\t{}".format(f.name, f.description,
+                                                          f.start, f.len,
+                                                          value))

@@ -1,5 +1,5 @@
 import unittest
-from regdump.profile import parse_profile
+from regdump.profile import parse_profile, inteprete_bits
 
 
 class TestStringMethods(unittest.TestCase):
