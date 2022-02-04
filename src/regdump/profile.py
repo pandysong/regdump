@@ -30,6 +30,8 @@ def split_field(f):
 
 def parse_profile_internal(lines, lq, err_io):
     # skip the header
+
+    profile = []
     try:
         header = next(lines)
         while True:
@@ -65,16 +67,18 @@ def parse_profile_internal(lines, lq, err_io):
                     field = None
                     description = None
                     m = {}
-                    print(f)
+                    profile = profile + [f]
             else:
                 print("unexpcted line:", field)
 
     except StopIteration:
         pass
 
+    return profile
+
 
 def parse_profile(profile, err_io):
-    """Create BOM file from the Part Database and Schematic
+    """Parse reg profile from a .reg file
 
         profile: the profile file name
         err_io: file like interface to receive the log info. This
