@@ -1,7 +1,25 @@
 import setuptools
+import shutil
+from setuptools.command.install_scripts import install_scripts
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
+
+
+class InstallScripts(install_scripts):
+
+    def run(self):
+        install_scripts.run(self)
+
+        # Rename some script files
+        for script in self.get_outputs():
+            if script.endswith(".py") or script.endswith(".sh"):
+                dest = script[:-3]
+            else:
+                continue
+            print("moving %s to %s" % (script, dest))
+            shutil.move(script, dest)
+
 
 setuptools.setup(
     name="regdump-pkg-pandy-song",
@@ -20,7 +38,11 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    cmdclass={
+        "install_scripts": InstallScripts
+    },
     package_dir={"": "src"},
     packages=setuptools.find_packages(where="src"),
     python_requires=">=3.6",
+    scripts=['src/regdump.py'],
 )
