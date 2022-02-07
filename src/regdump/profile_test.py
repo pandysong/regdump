@@ -21,13 +21,13 @@ class TestStringMethods(unittest.TestCase):
         inteprete_bits(profile, 0x381A381A)
 
     def test_parser3(self):
-        print("\nctrl0 5 ctrl1 4cb132c fading ctrl ff00")
+        print("\n")
         profile = parse_profile("rga2_alpha_ctrl0.reg", None)
-        print("\nctrl0 = 0x5")
-        inteprete_bits(profile, 0x5)
+        print("\nctrl0 = 0x807f9")
+        inteprete_bits(profile, 0x807f9)
         profile = parse_profile("rga2_alpha_ctrl1.reg", None)
-        print("\nctrl1 = 0x4cb132c")
-        inteprete_bits(profile, 0x4cb132c)
+        print("\nctrl1 = 0x90390")
+        inteprete_bits(profile, 0x90390)
         profile = parse_profile("rga2_fading_ctrl.reg", None)
         print("\nfading ctrl = 0xff00")
         inteprete_bits(profile, 0xff00)
